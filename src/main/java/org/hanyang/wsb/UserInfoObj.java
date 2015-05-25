@@ -4,111 +4,78 @@ public class UserInfoObj {
 	
 	public String school;
 	public Integer year;
-	public Boolean male;
-	public Boolean female;
+	public Integer sex;
 	public String grade;
-	public Boolean pfive;
-	public Boolean pthree;
+	public Integer scoretype;
 	public String incomerank;
-	public Boolean merityes;
-	public Boolean meritno;
+	public Integer meritman;
 	
-	public UserInfoObj(String school, 
-			Integer year, Boolean male, Boolean female,
-			String grade, Boolean pfive, Boolean pthree, 
-			String incomerank, Boolean merityes, Boolean meritno){
+	public UserInfoObj(String school, Integer year, Integer sex,
+			String grade, Integer scoretype, String incomerank, Integer meritman){
 		
 		this.school = school;
 		this.year = year;
-		this.male = male;
-		this.female = female;
+		this.sex = sex;
 		this.grade = grade;
-		this.pfive = pfive;
-		this.pthree = pthree;
+		this.scoretype = scoretype;
 		this.incomerank = incomerank;
-		this.merityes = merityes;
-		this.meritno = meritno;
+		this.meritman = meritman;
 		
 	}
-	
+
 	public String getSchool() {
 		return school;
 	}
-	
+
 	public void setSchool(String school) {
 		this.school = school;
 	}
-	
+
 	public Integer getYear() {
 		return year;
 	}
-	
+
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	
-	public Boolean getMale() {
-		return male;
+
+	public Integer getSex() {
+		return sex;
 	}
-	
-	public void setMale(Boolean male) {
-		this.male = male;
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
 	}
-	
-	public Boolean getFemale() {
-		return female;
-	}
-	
-	public void setFemale(Boolean female) {
-		this.female = female;
-	}
-	
+
 	public String getGrade() {
 		return grade;
 	}
-	
+
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	
-	public Boolean getPfive() {
-		return pfive;
+
+	public Integer getScoretype() {
+		return scoretype;
 	}
-	
-	public void setPfive(Boolean pfive) {
-		this.pfive = pfive;
+
+	public void setScoretype(Integer scoretype) {
+		this.scoretype = scoretype;
 	}
-	
-	public Boolean getPthree() {
-		return pthree;
-	}
-	
-	public void setPthree(Boolean pthree) {
-		this.pthree = pthree;
-	}
-	
+
 	public String getIncomerank() {
 		return incomerank;
 	}
-	
+
 	public void setIncomerank(String incomerank) {
 		this.incomerank = incomerank;
 	}
-	
-	public Boolean getMerityes() {
-		return merityes;
-	}
-	
-	public void setMerityes(Boolean merityes) {
-		this.merityes = merityes;
-	}
-	
-	public Boolean getMeritno() {
-		return meritno;
-	}
-	
-	public void setMeritno(Boolean meritno) {
-		this.meritno = meritno;
+
+	public Integer getMeritman() {
+		return meritman;
 	}
 
+	public void setMeritman(Integer meritman) {
+		this.meritman = meritman;
+	}
 }

@@ -13,7 +13,7 @@ public class SelectCmd {
 	
 	public ArrayList<JanghakObject> queryAll(Connection con) throws SQLException{
 		
-		PreparedStatement stmt = con.prepareStatement("SELECT * FROM JanghakDream.JanghakInfo");
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM JanghakDream.JanghakList");
 		ResultSet rs = stmt.executeQuery();
 		
 		return makeJanghakObj(rs);
@@ -30,15 +30,23 @@ public class SelectCmd {
 		return makeJanghakObj(rs);
 	}
 
+	/**
+	 * @param rs
+	 * @return
+	 */
 	public ArrayList<JanghakObject> makeJanghakObj(ResultSet rs){
 		ArrayList<JanghakObject> janghakList = new ArrayList<JanghakObject>();
 
 		
 		try{
+			// Really bad coding..should be fixed!
 			while(rs.next()){
-				JanghakObject janghakObj = new JanghakObject();
-				janghakObj.setFoundation(rs.getString("foundation"));
-				janghakObj.setPayamount(rs.getInt("payamount"));
+				JanghakObject janghakObj = new JanghakObject(rs.getString("janghakname"),
+						rs.getString("foundation"),rs.getString("payamount"),rs.getString("weblink"),
+						rs.getString("startsemester"), rs.getString("endsemester"),rs.getString("allgrade"),
+						rs.getString("lastgrade"), rs.getString("region"), rs.getString("school"),
+						rs.getString("major"), rs.getString("sex"), rs.getString("incomerank"), 
+						rs.getString("meritman"), rs.getString("startdate"), rs.getString("enddate"));
 				janghakList.add(janghakObj);
 			}
 		}

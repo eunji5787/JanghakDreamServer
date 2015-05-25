@@ -30,34 +30,29 @@ public class ParamSet {
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON +";charset=utf-8")
 	public String sqlAll(){
-
 		
 		return JSONandSQLhandler(0);
 	}
 	
 	@GET
 	@Path("/school/{school}/year/{year}"
-			+"/male/{male}&{female}"
-			+"/grade/{grade}/pointfive/{pfive}&{pthree}"
-			+"/incomerank/{incomerank}/merityes/{merityes}&{meritno}")
+			+"/sex/{sex}"
+			+"/grade/{grade}/scoretype/{scoretype}"
+			+"/incomerank/{incomerank}/meritman/{meritman}")
 	@Produces(MediaType.APPLICATION_JSON +";charset=utf-8")
 	public String sqlSelect(
 			@PathParam("school") String school,
 			@PathParam("year") Integer year,
-			@PathParam("male") Boolean male,
-			@PathParam("female") Boolean female,
+			@PathParam("sex") Integer sex,
 			@PathParam("grade") String grade,
-			@PathParam("pfive") Boolean pfive,
-			@PathParam("pthree") Boolean pthree,
+			@PathParam("scoretype") Integer scoretype,
 			@PathParam("incomerank") String incomerank,
-			@PathParam("merityes") Boolean merityes,
-			@PathParam("meritno") Boolean meritno
+			@PathParam("meritman") Integer meritman
 			) {
 
 		System.out.println("UserInfoObj is making");
-		UserInfoObj uObj = new UserInfoObj(school, year, male, female, grade, 
-				pfive, pthree, incomerank, merityes, meritno);
-		System.out.println(uObj.getFemale()+"To check Obj is made properly");
+		UserInfoObj uObj = new UserInfoObj(school, year, sex, grade, scoretype, incomerank, meritman);
+		System.out.println(uObj.getSchool()+"To check Obj is made properly");
 		
 		return JSONandSQLhandler(1, uObj);
 	}
