@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
  
 
 public class SelectCmd {
@@ -42,11 +44,10 @@ public class SelectCmd {
 			// Really bad coding..should be fixed!
 			while(rs.next()){
 				JanghakObject janghakObj = new JanghakObject(rs.getString("janghakname"),
-						rs.getString("foundation"),rs.getString("payamount"),rs.getString("weblink"),
-						rs.getString("startsemester"), rs.getString("endsemester"),rs.getString("allgrade"),
-						rs.getString("lastgrade"), rs.getString("region"), rs.getString("school"),
-						rs.getString("major"), rs.getString("sex"), rs.getString("incomerank"), 
-						rs.getString("meritman"), rs.getString("startdate"), rs.getString("enddate"));
+						rs.getString("foundation"), rs.getString("payamount"),
+						rs.getString("weblink"), rs.getString("downloadlink"),
+						rs.getString("startdate"), rs.getString("enddate"),
+						calcDday(rs.getString("enddate")));
 				janghakList.add(janghakObj);
 			}
 		}
@@ -56,6 +57,26 @@ public class SelectCmd {
 		return janghakList;
 	}
 	
+	public String calcDday(String enddate){
+		
+		try{
+			
+			Date today = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date endd = sdf.parse(enddate);
+
+			long diff = endd.getTime() - today.getTime();
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+			
+			return String.valueOf(diffDays);
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 		
 }
 

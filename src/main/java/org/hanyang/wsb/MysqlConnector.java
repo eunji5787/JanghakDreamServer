@@ -1,6 +1,7 @@
 package org.hanyang.wsb;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ public class MysqlConnector {
 	public Connection connector() throws Exception {
 		try {		
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/",
+			Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/JanghakDream?zeroDateTimeBehavior=convertToNull",
 					"root", "");
 			return connect;
 			}

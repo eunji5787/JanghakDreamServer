@@ -16,9 +16,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
+import com.sun.xml.internal.ws.developer.SerializationFeature;
 
 @Path("/select")
-public class ParamSet {
+public class Main {
 	int ind;
 
     public final static int AllJanghak = 0;
@@ -35,23 +36,28 @@ public class ParamSet {
 	}
 	
 	@GET
-	@Path("/school/{school}/year/{year}"
-			+"/sex/{sex}"
-			+"/grade/{grade}/scoretype/{scoretype}"
+	@Path("/school/{school}/year/{year}/"
+			+"local/{local}/sex/{sex}"
+			+"/allmark/{allmark}/scoretype1/{scoretype1}"
+			+"/nowmark/{nowmark}/scoretype2/{scoretype2}"
 			+"/incomerank/{incomerank}/meritman/{meritman}")
 	@Produces(MediaType.APPLICATION_JSON +";charset=utf-8")
 	public String sqlSelect(
 			@PathParam("school") String school,
 			@PathParam("year") Integer year,
+			@PathParam("local") Integer local,
 			@PathParam("sex") Integer sex,
-			@PathParam("grade") String grade,
-			@PathParam("scoretype") Integer scoretype,
-			@PathParam("incomerank") String incomerank,
+			@PathParam("allmark") String allmark,
+			@PathParam("scoretype1") Integer scoretype1,
+			@PathParam("lastmark") String nowmark,
+			@PathParam("scoretype2") Integer scoretype2,
+			@PathParam("incomerank") Integer incomerank,
 			@PathParam("meritman") Integer meritman
 			) {
 
 		System.out.println("UserInfoObj is making");
-		UserInfoObj uObj = new UserInfoObj(school, year, sex, grade, scoretype, incomerank, meritman);
+		UserInfoObj uObj = new UserInfoObj(school, year, local+1, sex, allmark, 
+				scoretype1, nowmark, scoretype2,incomerank, meritman);
 		System.out.println(uObj.getSchool()+"To check Obj is made properly");
 		
 		return JSONandSQLhandler(1, uObj);
