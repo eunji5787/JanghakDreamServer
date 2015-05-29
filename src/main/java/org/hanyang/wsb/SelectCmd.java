@@ -36,6 +36,7 @@ public class SelectCmd {
 	 * @param rs
 	 * @return
 	 */
+	
 	public ArrayList<JanghakObject> makeJanghakObj(ResultSet rs){
 		ArrayList<JanghakObject> janghakList = new ArrayList<JanghakObject>();
 
@@ -43,9 +44,11 @@ public class SelectCmd {
 		try{
 			// Really bad coding..should be fixed!
 			while(rs.next()){
-				JanghakObject janghakObj = new JanghakObject(rs.getString("janghakname"),
+				JanghakObject janghakObj = new JanghakObject(
+						String.valueOf(rs.getInt("Jid")) ,rs.getString("janghakname"),
 						rs.getString("foundation"), rs.getString("payamount"),
-						rs.getString("weblink"), rs.getString("downloadlink"),
+						rs.getString("weblink"), 
+						handleDownloadlink(rs.getString("downloadlink")),
 						rs.getString("startdate"), rs.getString("enddate"),
 						calcDday(rs.getString("enddate")));
 				janghakList.add(janghakObj);
@@ -57,7 +60,7 @@ public class SelectCmd {
 		return janghakList;
 	}
 	
-	public String calcDday(String enddate){
+	public Integer calcDday(String enddate){
 		
 		try{
 			
@@ -68,7 +71,7 @@ public class SelectCmd {
 			long diff = endd.getTime() - today.getTime();
 			long diffDays = diff / (24 * 60 * 60 * 1000);
 			
-			return String.valueOf(diffDays);
+			return (int) diffDays;
 			
 		}
 		catch(Exception e){
@@ -76,6 +79,11 @@ public class SelectCmd {
 		}
 		
 		return null;
+	}
+	
+	public String handleDownloadlink(String dl){
+		if ( dl == null ) { return ""; }
+		else return dl;
 	}
 		
 }

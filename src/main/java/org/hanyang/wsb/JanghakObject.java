@@ -2,12 +2,23 @@ package org.hanyang.wsb;
 
 public class JanghakObject {
 	
+public String Jid;
 public String janghakname;
 public String foundation;
 public String weblink;
 public String payamount;
 public String downloadlink;
 public String startdate;
+public String enddate;
+public Integer dday;
+
+public String getJid() {
+	return Jid;
+}
+
+public void setJid(String jid) {
+	Jid = jid;
+}
 
 public String getJanghakname() {
 	return janghakname;
@@ -65,28 +76,20 @@ public void setEnddate(String enddate) {
 	this.enddate = enddate;
 }
 
-public String getDday() {
+public Integer getDday() {
 	return dday;
 }
 
-public void setDday(String dday) {
+public void setDday(Integer dday) {
 	this.dday = dday;
 }
 
-public String enddate;
-public String dday;
-
-
-// Must have no-argument constructor
-
-public JanghakObject() {
-
-}
-
-public JanghakObject(String janghakname, String foundation, String payamount,
+public JanghakObject(String Jid, String janghakname, 
+					 String foundation,String payamount,
                      String weblink, String downloadlink,
-                     String startdate, String enddate, String dday)
+                     String startdate, String enddate, Integer dday)
 {
+	this.Jid = Jid;
     this.janghakname = janghakname;
     this.foundation = foundation;
     this.payamount = payamount;
